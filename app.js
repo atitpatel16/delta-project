@@ -15,11 +15,13 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
+const dns = require("dns");
+
 const listingRouter  = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 const dbUrl = process.env.ATLASDB_URL;
 
 main()
@@ -40,7 +42,7 @@ app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 app.use(methodOverride("_method"));
-app.engine("ejs", ejsMate);
+app.engine("ejs", ejsMate); 
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.use((req,res,next)=>{

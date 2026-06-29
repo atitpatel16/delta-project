@@ -17,6 +17,21 @@ const listingSchema = new Schema({
   },
 
   price:Number,
+    category:{
+    type:String,
+    enum:[
+      "Trending",
+      "Rooms",
+      "Iconic cities",
+      "Mountains",
+      "Castles",
+      "Camping",
+      "Farms",
+      "Artic",
+      "Boats",
+    ],
+    require: true
+  },
   location:String,
   city:String,
   country:String,
@@ -42,6 +57,9 @@ const listingSchema = new Schema({
       required: true
     }
   },
+
+
+
 
 });
 

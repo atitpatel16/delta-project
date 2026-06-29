@@ -8,6 +8,18 @@ module.exports.index = async (req,res)=>{
  const allListings = await Listing.find({});
   res.render("listings/index.ejs",{allListings});
   };
+
+// module.exports.index = async (req,res)=>{
+//   const {category} = req.query;
+//   let allListings;
+//   if(category){
+//     allListings = await Listing.find({category});
+//   }else{
+//     allListings = await Listing.find({});
+//   }
+//   res.render("listings/index.ejs", {allListings, category});
+
+// };
  
 
 module.exports.renderNewForm = async (req,res)=>{
@@ -57,7 +69,7 @@ module.exports.createListing = async(req,res,next)=>{
 
    let savedListing =  await newListing.save();
    console.log(savedListing);
-    req.flash("New Listing Created !");
+    req.flash("success","New Listing Created !");
     res.redirect(`/listings/${newListing._id}`);
   } catch(err){
     next(err);
@@ -117,5 +129,12 @@ module.exports.searchListings = async(req,res)=>{
   });
     res.render("listings/index",{allListings: listings, q});
 };
+
+
+
+
+
+
+
 
 

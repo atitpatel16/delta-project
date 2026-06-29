@@ -34,15 +34,18 @@
       padding: 1rem;
       margin-left: 3rem;
       display: flex;
-      align-items: center;;
-    }
+      align-items: center;
+    } 
   </style>
+
+  <div class="categories">
 
   <div id="filters">
     <div class="filter">
       <div><i class="fa-solid fa-fire"></i></div>
      <p> Trending</p>
     </div>
+  
 
      <div class="filter">
       <div><i class="fa-solid fa-bed"></i></div>
@@ -85,6 +88,7 @@
       <div><i class="fa-solid fa-ship"></i></div>
      <p>Boats</p>
     </div>
+    </div>
 
     <div class="tax-toggle">
       <div class="form-check-reverse form-switch">
@@ -100,7 +104,7 @@
   <div class="container mt-3">
     <h3> Search Results for <%= q %> </h3>
     <% if(allListings.length > 0){ %>
-      <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 mt-3">
+       <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 mt-3"> 
         <% allListings.forEach(listing => { %>
           <a href="/listings/<%= listing._id %>" class="listing-link">
             <div class="card col listing-card">
@@ -109,12 +113,12 @@
               <div class="card-body">
                 <p class="card-text">
                   <b><%= listing.title %></b> </br>
-                  <% if(listing.price != null) { %>
-                    &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
-                    <i class="tax-info"> &nbsp; &nbsp; +18% GST </i>
-                  <% } else { %>
-                    Price not available
-                  <% } %>
+                <% if(listing.price != null) { %>
+           &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+             <i class="tax-info"> &nbsp; &nbsp; +18% GST </i>
+          <% } else { %>
+        Price not available
+          <% } %>
                 </p>
                  </div>
             </div>
@@ -127,7 +131,7 @@
   </div>
 <% } else { %>
   <div class="container mt-3">
-    <!-- <h1>All Listings</h1> -->
+    <!--  <h1>All Listings</h1> -->
   </div>
 
 <div class="row row-cols-lg-3 row-clos-md-3 row-cols-sm-1 mt-3">
@@ -139,12 +143,12 @@
   <div class="card-body">
     <p class="card-text">
      <b><%=listing.title%> </b> </br>
-     <% if(listing.price != null) { %>
-  &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
-  <i class="tax-info"> &nbsp; &nbsp; +18% GST </i>
-     <% } else { %>
-      Price not available
-      <% } %>
+  <% if(listing.price != null) { 
+     let gstPrice = Math.round(listing.price * 1.18); %>
+  &#8377; <%= gstPrice.toLocaleString("en-IN") %> / night (incl. GST)
+<% } else { %>
+  Price not available
+<% } %>
    
     </p>
   </div>

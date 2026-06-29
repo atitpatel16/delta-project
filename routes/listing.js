@@ -19,7 +19,6 @@ router.route("/")
    upload.single("listing[image]"),
       validateListing,
   wrapAsync(listingController.createListing));
-
  
 
 // new route
